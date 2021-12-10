@@ -1,0 +1,370 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataEncoding</name>
+    </assembly>
+    <members>
+        <member name="T:DataEncoding.DER.DERBase">
+            <summary>
+            Represents the base of all DER objects in the DataEncoding library.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.DER.DERBase.Type">
+            <summary>
+            Gets or sets the <see cref="P:DataEncoding.DER.DERBase.Type"/> of the DER object.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.DER.DERBase.Length">
+            <summary>
+            Gets or sets the <see cref="P:DataEncoding.DER.DERBase.Length"/> of the DER object's value.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.DER.DERBase.Encoded">
+            <summary>
+            Gets or sets the <see cref="P:DataEncoding.DER.DERBase.Encoded"/> value. (Obtained after calling either <see cref="M:DataEncoding.DER.DERBase.Encode"/> or <see cref="M:DataEncoding.DER.DERBase.Decode(System.Byte[],System.Int32)"/> method).
+            </summary>
+        </member>
+        <member name="M:DataEncoding.DER.DERBase.Encode">
+            <summary>
+            Encodes the value currently stored inside the DER object into a DER byte array.<br />
+            Also sets the <see cref="P:DataEncoding.DER.DERBase.Encoded"/> value of the object.
+            </summary>
+            <returns>The encoded byte array.</returns>
+        </member>
+        <member name="M:DataEncoding.DER.DERBase.Decode(System.Byte[],System.Int32)">
+            <summary>
+            Decodes the given byte array into a value and sets it as Content to the given object.<br />
+            Also sets the <see cref="P:DataEncoding.DER.DERBase.Encoded"/>, <see cref="P:DataEncoding.DER.DERBase.Length"/> and <see cref="P:DataEncoding.DER.DERBase.Type"/> values.
+            </summary>
+            <param name="encoded">The byte array to decode.</param>
+            <param name="start">An index in the encoded array from which the object starts.</param>
+            <returns>The amount of bytes used from the input during the decoding process (i.e. the total length of the T-L-V structure).</returns>
+        </member>
+        <member name="M:DataEncoding.DER.DERBase.EncodeLength(System.Int32)">
+            <summary>
+            Encodes the given length into a byte array that represents that length according to the DER standard.
+            </summary>
+            <param name="length">The length to encode.</param>
+            <returns>The byte array that represents the given length according to the DER standard.</returns>
+        </member>
+        <member name="M:DataEncoding.DER.DERBase.DecodeLength(System.Byte[],System.Int32)">
+            <summary>
+            Decodes the length of a the value field from the given encoded data.<br />
+            Note: The entire encoded byte array that's relevant to the given object must be passed to the method.<br />
+            Throws a <see cref="T:System.NotSupportedException"/> when the length of the length field takes more than 5 bytes. (i.e. The value field takes up more than 2^32 bytes)
+            </summary>
+            <param name="encoded">The encoded byte array that represents the DER encoded object.</param>
+            <param name="lengthStart">The index in encoded array at which the length field starts.</param>
+            <returns>
+            An array of <see cref="T:System.Int32"/>:<br />
+            Index 0 - The length of the value field.<br />
+            Index 1 - The total length of the length field.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="T:DataEncoding.DER.DERGeneric">
+            <summary>
+            Represents a generic DER object.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.DER.DERGeneric.Content">
+            <summary>
+            Gets or sets the <see cref="P:DataEncoding.DER.DERGeneric.Content"/> of the DER object. When the <see cref="P:DataEncoding.DER.DERGeneric.Content"/> is set, the <see cref="P:DataEncoding.DER.DERBase.Length"/> is automatically adjusted.
+            </summary>
+        </member>
+        <member name="T:DataEncoding.DER.DERSequence">
+            <summary>
+            Represents a DER Sequence.<br />
+            Note: The DER sequence does not have the <see cref="P:DataEncoding.DER.DERBase.Length"/> value available until either of <see cref="M:DataEncoding.DER.DERSequence.Encode"/> or <see cref="M:DataEncoding.DER.DERSequence.Decode(System.Byte[],System.Int32)"/> method is called.
+            </summary>
+        </member>
+        <member name="T:DataEncoding.JSON.JSONBase">
+            <summary>
+            Serves as a base for all JSON data objects.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.JSON.JSONBase.Encoded">
+            <summary>
+            Gets or sets the encoded string.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONBase.Encode">
+            <summary>
+            Encodes the data into the JSON format and sets it to the <see cref="P:DataEncoding.JSON.JSONBase.Encoded"/> variable.
+            </summary>
+            <returns>The encoded string.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONBase.Decode(System.String,System.Int32)">
+            <summary>
+            Decodes the given JSON data and sets object's properties based on the decoded data.
+            </summary>
+            <param name="json">The JSON data to decode.</param>
+            <param name="start">The index from which to start decoding.</param>
+            <returns>The index of the first character after the decoded value.</returns>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONBase.Beautify(System.String)">
+            <summary>
+            Beautifies the given JSON string.
+            </summary>
+            <param name="json">JSON-encoded text to beautify.</param>
+            <returns>The beautified JSON string.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONBase.Minify(System.String)">
+            <summary>
+            Minifies the given JSON string.
+            </summary>
+            <param name="json">JSON-encoded text to minify.</param>
+            <returns>The minified JSON string.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONBase.GetDatatype(System.String,System.Int32)">
+            <summary>
+            Determines the datatype of the first detected data and returns a new JSON object accordingly to that datatype.
+            </summary>
+            <param name="json">The JSON string in which to search for data.</param>
+            <param name="start">The index from which to start the search.</param>
+            <returns>A JSON object that represents the detected datatype.</returns>
+        </member>
+        <member name="T:DataEncoding.JSON.JSONDecoder">
+            <summary>
+            Provides an easy way to decode JSON strings with multiple data<br />
+            (i.e. JSON strings that have more than 1 object or don't have data contained in an object)
+            </summary>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONDecoder.DecodeString(System.String,System.Int32)">
+            <summary>
+            Decodes the given JSON-encoded string.
+            </summary>
+            <param name="json">The JSON-encoded string to decode.</param>
+            <param name="start">The index from which to start decoding.</param>
+            <returns>A list of any detected data in the JSON string.</returns>
+        </member>
+        <member name="T:DataEncoding.JSON.JSONNameValuePairCollection">
+            <summary>
+            Provides a container for the <see cref="T:DataEncoding.JSON.JSONNameValuePair"/>.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.JSON.JSONNameValuePairCollection.Items">
+            <summary>
+            Gets the list of <see cref="T:DataEncoding.JSON.JSONNameValuePair"/> stored in the collection.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.JSON.JSONNameValuePairCollection.Count">
+            <summary>
+            Gets the amount of items stored in the collection.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.#ctor">
+            <summary>
+            Initiates an empty <see cref="T:DataEncoding.JSON.JSONNameValuePairCollection"/>.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.#ctor(System.Collections.Generic.IEnumerable{DataEncoding.JSON.JSONNameValuePair})">
+            <summary>
+            Initiates a <see cref="T:DataEncoding.JSON.JSONNameValuePairCollection"/> that contains the items in the passed collection.
+            </summary>
+            <param name="collection">A collection of <see cref="T:DataEncoding.JSON.JSONNameValuePair"/> values to initialize the collection with.</param>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Add(DataEncoding.JSON.JSONNameValuePair)">
+            <summary>
+            Adds an item to the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Remove(DataEncoding.JSON.JSONNameValuePair)">
+            <summary>
+            Removes the specified item from the collection.
+            </summary>
+            <param name="item"></param>
+            <returns>True if item was removed from the list. False if item was not found or it's removal failed.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes the item at the specified index from the collection.
+            </summary>
+            <param name="index">Index of the item to remove.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.RemoveRange(System.Int32,System.Int32)">
+            <summary>
+            Removes a range of items from the collection.
+            </summary>
+            <param name="index">The index from which to start removing.</param>
+            <param name="count">The number of items to remove.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Clear">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Insert(System.Int32,DataEncoding.JSON.JSONNameValuePair)">
+            <summary>
+            Inserts an item at a specified position.
+            </summary>
+            <param name="index">Index to which to insert the item.</param>
+            <param name="item">The item to insert.</param>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.IndexOf(DataEncoding.JSON.JSONNameValuePair)">
+            <summary>
+            Gets the index of a specified item in the collection.
+            </summary>
+            <param name="item">The item to search for.</param>
+            <returns>The index of the specified item in the collection. -1 if item was not found.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Reverse">
+            <summary>
+            Reverses the collection.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.ToArray">
+            <summary>
+            Converts the collection to an array.
+            </summary>
+            <returns>The resulting array.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Contains(DataEncoding.JSON.JSONNameValuePair)">
+            <summary>
+            Determines whether an item is present in the collection.
+            </summary>
+            <param name="item">The item to search for.</param>
+            <returns>True if item was found in the collection, otherwise false.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Add(System.String,DataEncoding.JSON.JSONBase)">
+            <summary>
+            Adds new Name-Value pair to the collection.
+            </summary>
+            <param name="name">The name of the new value.</param>
+            <param name="value">The new value.</param>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Contains(System.String)">
+            <summary>
+            Determines whether an item with the specified name is present in the collection.
+            </summary>
+            <param name="name">The name to search for.</param>
+            <returns>True if item was found in the collection, otherwise false.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Remove(System.String)">
+            <summary>
+            Removes an item with the specified name.
+            </summary>
+            <param name="name">The name of the item to remove.</param>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.IndexOf(System.String)">
+            <summary>
+            Gets the index of an item with the specified name.
+            </summary>
+            <param name="name">The name to search for.</param>
+            <returns>The index of the specified item in the collection. -1 if item was not found.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.Find(System.String)">
+            <summary>
+            Returns the <see cref="T:DataEncoding.JSON.JSONNameValuePair"/> with the specified name from the collection.
+            </summary>
+            <param name="name">The name to search for.</param>
+            <returns>The <see cref="T:DataEncoding.JSON.JSONNameValuePair"/> with the specified name or null, if the item was not found.</returns>
+        </member>
+        <member name="M:DataEncoding.JSON.JSONNameValuePairCollection.FindValue(System.String)">
+            <summary>
+            Returns the value of a <see cref="T:DataEncoding.JSON.JSONNameValuePair"/> with the specified name from the collection.
+            </summary>
+            <param name="name">The name to search for.</param>
+            <returns>The value of a <see cref="T:DataEncoding.JSON.JSONNameValuePair"/> with the specified name or null, if the name was not found.</returns>
+        </member>
+        <member name="P:DataEncoding.JSON.JSONObject.Content">
+            <summary>
+            Gets or sets the content of the <see cref="T:DataEncoding.JSON.JSONObject"/>.
+            </summary>
+        </member>
+        <member name="T:DataEncoding.PEM.PEMBase">
+            <summary>
+            Represent the base for all PEM objects in the DataEncoding library.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.PEM.PEMBase.Encoded">
+            <summary>
+            Gets or sets the encoded string.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.PEM.PEMBase.Encode">
+            <summary>
+            Encodes the data into the PEM format and sets it to the <see cref="P:DataEncoding.PEM.PEMBase.Encoded"/> variable.
+            </summary>
+            <returns>The encoded string.</returns>
+        </member>
+        <member name="M:DataEncoding.PEM.PEMBase.Decode(System.String,System.Int32)">
+            <summary>
+            Decodes the given PEM data and sets object's properties based on the decoded data.
+            </summary>
+            <param name="data">The PEM data to decode.</param>
+            <param name="startIndex">The index from which to start decoding.</param>
+            <returns>The index at which the decoding process stopped.</returns>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="T:DataEncoding.PEM.PEMBlock">
+            <summary>
+            Represents a PEM block with any data inside.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.PEM.PEMBlock.BlockLabel">
+            <summary>
+            Gets or sets the label of the <see cref="T:DataEncoding.PEM.PEMBlock"/>.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.PEM.PEMBlock.Content">
+            <summary>
+            Gets or sets the content of the <see cref="T:DataEncoding.PEM.PEMBlock"/>.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.PEM.PEMBlock.NormalizeLineLength(System.String)">
+            <summary>
+            Aligns the input data into 64 character long lines.
+            </summary>
+            <param name="input">The input to align.</param>
+            <returns>The aligned string.</returns>
+        </member>
+        <member name="T:DataEncoding.PEM.PEMBlockDER">
+            <summary>
+            Represents a PEM block with DER data inside.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.PEM.PEMBlockDER.ContentDER">
+            <summary>
+            Gets or sets the DER content of the <see cref="T:DataEncoding.PEM.PEMBlockDER"/>.
+            </summary>
+        </member>
+        <member name="T:DataEncoding.PEM.PEMSuperBlock">
+            <summary>
+            Represents a series of <see cref="T:DataEncoding.PEM.PEMBlock"/>.<br />
+            Provides an easy way of handling encoding and decoding of multiple blocks at once.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.PEM.PEMSuperBlock.Blocks">
+            <summary>
+            Gets or sets the list of blocks in the current <see cref="T:DataEncoding.PEM.PEMSuperBlock"/>.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.PEM.PEMSuperBlock.IndexOf(System.String)">
+            <summary>
+            Returns the index of a <see cref="T:DataEncoding.PEM.PEMBlock"/> with the specified <see cref="P:DataEncoding.PEM.PEMBlock.BlockLabel"/> in the <see cref="P:DataEncoding.PEM.PEMSuperBlock.Blocks"/> list.
+            </summary>
+            <param name="label">The <see cref="P:DataEncoding.PEM.PEMBlock.BlockLabel"/> to search for.</param>
+            <returns>
+            The index of a <see cref="T:DataEncoding.PEM.PEMBlock"/> with the specified <see cref="P:DataEncoding.PEM.PEMBlock.BlockLabel"/> in the <see cref="P:DataEncoding.PEM.PEMSuperBlock.Blocks"/> list.<br />
+            -1 if no <see cref="T:DataEncoding.PEM.PEMBlock"/> with a matching <see cref="P:DataEncoding.PEM.PEMBlock.BlockLabel"/> was found.
+            </returns>
+        </member>
+        <member name="M:DataEncoding.PEM.PEMSuperBlock.FindBlock(System.String)">
+            <summary>
+            Returns a <see cref="T:DataEncoding.PEM.PEMBlock"/> with the <see cref="P:DataEncoding.PEM.PEMBlock.BlockLabel"/> matching the given label from the <see cref="P:DataEncoding.PEM.PEMSuperBlock.Blocks"/> list.
+            </summary>
+            <param name="label">The <see cref="P:DataEncoding.PEM.PEMBlock.BlockLabel"/> to search for.</param>
+            <returns>
+            A <see cref="T:DataEncoding.PEM.PEMBlock"/> with the <see cref="P:DataEncoding.PEM.PEMBlock.BlockLabel"/> matching the given label.<br />
+            null of no matching <see cref="T:DataEncoding.PEM.PEMBlock"/> was found.
+            </returns>
+        </member>
+    </members>
+</doc>
