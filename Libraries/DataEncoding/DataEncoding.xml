@@ -366,5 +366,326 @@
             null of no matching <see cref="T:DataEncoding.PEM.PEMBlock"/> was found.
             </returns>
         </member>
+        <member name="M:DataEncoding.PEM.PEMSuperBlock.FromEncoded(System.String,System.Int32,System.Int32@)">
+            <summary>
+            Initiates a new instance of <see cref="T:DataEncoding.PEM.PEMSuperBlock"/> based on the decoded input data.
+            </summary>
+            <param name="data">The PEM data to decode.</param>
+            <param name="startIndex">The index from which to start decoding.</param>
+            <param name="end">The index at which the decoding process stopped (the index of the next character after the decoded value).</param>
+            <returns>The new instance of <see cref="T:DataEncoding.PEM.PEMSuperBlock"/> containing the decoded data.</returns>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="T:DataEncoding.XML.XMLAttribute">
+            <summary>
+            Represents an attribute of an XML tag.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLAttribute.Name">
+            <summary>
+            The name of the attribute.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLAttribute.Value">
+            <summary>
+            The value of the attribute
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttribute.Encode">
+            <summary>
+            Encodes the <see cref="T:DataEncoding.XML.XMLAttribute"/> based on it's current <see cref="P:DataEncoding.XML.XMLAttribute.Name"/> and <see cref="P:DataEncoding.XML.XMLAttribute.Value"/>.
+            </summary>
+            <returns>The encoded <see cref="T:DataEncoding.XML.XMLAttribute"/></returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttribute.Decode(System.String)">
+            <summary>
+            Decodes the given text and sets the <see cref="P:DataEncoding.XML.XMLAttribute.Name"/> and <see cref="P:DataEncoding.XML.XMLAttribute.Value"/> of the <see cref="T:DataEncoding.XML.XMLAttribute"/> object accordingly.
+            </summary>
+            <param name="attributeText">The text to decode.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttribute.FromEncoded(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:DataEncoding.XML.XMLAttribute"/> based on information decoded from the given text.
+            </summary>
+            <param name="attributeText">The text to decode.</param>
+            <returns>The new instance of <see cref="T:DataEncoding.XML.XMLAttribute"/>.</returns>
+        </member>
+        <member name="T:DataEncoding.XML.XMLAttributeCollection">
+            <summary>
+            Represents a collection of <see cref="T:DataEncoding.XML.XMLAttribute"/>s.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLAttributeCollection.Items">
+            <summary>
+            Contains all <see cref="T:DataEncoding.XML.XMLAttribute"/>s in the <see cref="T:DataEncoding.XML.XMLAttributeCollection"/>.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLAttributeCollection.Count">
+            <summary>
+            Gets the number of items in the <see cref="P:DataEncoding.XML.XMLAttributeCollection.Items"/>.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.#ctor">
+            <summary>
+            Initiates a new, empty <see cref="T:DataEncoding.XML.XMLAttributeCollection"/>.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.#ctor(System.Collections.Generic.IEnumerable{DataEncoding.XML.XMLAttribute})">
+            <summary>
+            Initiates a new <see cref="T:DataEncoding.XML.XMLAttributeCollection"/> and copies all items from the given collection to it.
+            </summary>
+            <param name="collection">A collection of items to copy.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.Add(DataEncoding.XML.XMLAttribute)">
+            <summary>
+            Adds an item to the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.Remove(DataEncoding.XML.XMLAttribute)">
+            <summary>
+            Removes an item from the collection.
+            </summary>
+            <param name="item">The item to remove.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes an item at the specified index from the collection.
+            </summary>
+            <param name="index">The index of the item to remove.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.Clear">
+            <summary>
+            Clears the collection. (Removes all it's items)
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.Find(System.String)">
+            <summary>
+            Returns an <see cref="T:DataEncoding.XML.XMLAttribute"/> from the <see cref="T:DataEncoding.XML.XMLAttributeCollection"/> based on it's name.
+            </summary>
+            <param name="name">The name to search for.</param>
+            <returns>
+            The <see cref="T:DataEncoding.XML.XMLAttribute"/> with the <see cref="P:DataEncoding.XML.XMLAttribute.Name"/> matching the given name.<br />
+            null of no <see cref="T:DataEncoding.XML.XMLAttribute"/> with the given name was found.
+            </returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.FindValue(System.String)">
+            <summary>
+            Searches for <see cref="T:DataEncoding.XML.XMLAttribute"/> from the <see cref="T:DataEncoding.XML.XMLAttributeCollection"/> based on it's name and returns it's <see cref="P:DataEncoding.XML.XMLAttribute.Value"/>.
+            </summary>
+            <param name="name">The name to search for.</param>
+            <returns>
+            The <see cref="P:DataEncoding.XML.XMLAttribute.Value"/> of the <see cref="T:DataEncoding.XML.XMLAttribute"/> with the <see cref="P:DataEncoding.XML.XMLAttribute.Name"/> matching the given name.<br />
+            null of no <see cref="T:DataEncoding.XML.XMLAttribute"/> with the given name was found.
+            </returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLAttributeCollection.Remove(System.String)">
+            <summary>
+            Removes an <see cref="T:DataEncoding.XML.XMLAttribute"/> item from the <see cref="T:DataEncoding.XML.XMLAttributeCollection"/> based on it's name.
+            </summary>
+            <param name="name">The <see cref="P:DataEncoding.XML.XMLAttribute.Name"/> of the <see cref="T:DataEncoding.XML.XMLAttribute"/> item to remove.</param>
+        </member>
+        <member name="T:DataEncoding.XML.XMLBase">
+            <summary>
+            Represents the base class for all objects representing XML data.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLBase.Attributes">
+            <summary>
+            The attributes of the XML object (in case of tag)
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLBase.Name">
+            <summary>
+            The name of the XML object (in case of tag)
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLBase.Encode">
+            <summary>
+            Encodes the XML object based on it's current values.
+            </summary>
+            <returns>A string, representing the encoded XML object.</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLBase.Decode(System.String,System.Int32)">
+            <summary>
+            Decodes the given XML encoded text starting at the given index and sets the object's values based on the decoded data.<br/>
+            Throws an <see cref="T:System.ArgumentException"/> if no valid text was found (tag in case of <see cref="T:DataEncoding.XML.XMLElement"/>. <see cref="T:DataEncoding.XML.XMLString"/> decodes anything.)
+            </summary>
+            <param name="xml">The XML encoded text to decode.</param>
+            <param name="start">The index at which to start decoding.</param>
+            <returns>The index in the xml at which the decoding stopped (the index of the first character after the decoded value).</returns>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:DataEncoding.XML.XMLBase.Beautify(System.String)">
+            <summary>
+            Beautifies the given XML string. (Hopefully)
+            </summary>
+            <param name="xml">The XML string to beautify.</param>
+            <returns>The beautified XML string.</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLBase.Minify(System.String)">
+            <summary>
+            Minifies the given XML string.
+            </summary>
+            <param name="xml">The XML string to minify.</param>
+            <returns>The minified XML string.</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLBase.CommonDecoder(System.String,System.Int32,System.Int32@)">
+            <summary>
+            Decodes the name and attributes of a tag from the given XML text.<br />
+            Throws an <see cref="T:System.ArgumentException"/> if no tag was found.
+            </summary>
+            <param name="xml">The XML text to decode.</param>
+            <param name="start">The index in the xml from which to start decoding.</param>
+            <param name="end">The index at which the decoding stopped (the index of the first character after the decoded value).</param>
+            <returns>The content of the decoded tag.</returns>
+        </member>
+        <member name="P:DataEncoding.XML.XMLContentCollection.Items">
+            <summary>
+            Contains all <see cref="T:DataEncoding.XML.XMLBase"/>s in the <see cref="T:DataEncoding.XML.XMLContentCollection"/>.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLContentCollection.Count">
+            <summary>
+            Gets the number of items in the <see cref="P:DataEncoding.XML.XMLContentCollection.Items"/>.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.#ctor">
+            <summary>
+            Initiates a new, empty <see cref="T:DataEncoding.XML.XMLAttributeCollection"/>.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.#ctor(System.Collections.Generic.IEnumerable{DataEncoding.XML.XMLBase})">
+            <summary>
+            Initiates a new <see cref="T:DataEncoding.XML.XMLAttributeCollection"/> and copies all items from the given collection to it.
+            </summary>
+            <param name="collection">A collection of items to copy.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.Add(DataEncoding.XML.XMLBase)">
+            <summary>
+            Adds an item to the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.Remove(DataEncoding.XML.XMLBase)">
+            <summary>
+            Removes an item from the collection.
+            </summary>
+            <param name="item">The item to remove.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes an item at the specified index from the collection.
+            </summary>
+            <param name="index">The index of the item to remove.</param>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.Clear">
+            <summary>
+            Clears the collection. (Removes all it's items)
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.Find(System.String)">
+            <summary>
+            Returns an <see cref="T:DataEncoding.XML.XMLElement"/> from the <see cref="T:DataEncoding.XML.XMLContentCollection"/> based on it's name.
+            </summary>
+            <param name="name">The name to search for.</param>
+            <returns>
+            The <see cref="T:DataEncoding.XML.XMLElement"/> with the <see cref="!:XMLElement.Name"/> matching the given name.<br />
+            null of no <see cref="T:DataEncoding.XML.XMLElement"/> with the given name was found.
+            </returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLContentCollection.Remove(System.String)">
+            <summary>
+            Removes an <see cref="T:DataEncoding.XML.XMLElement"/> item from the <see cref="T:DataEncoding.XML.XMLContentCollection"/> based on it's name.
+            </summary>
+            <param name="name">The <see cref="!:XMLElement.Name"/> of the <see cref="T:DataEncoding.XML.XMLElement"/> item to remove.</param>
+        </member>
+        <member name="T:DataEncoding.XML.XMLElement">
+            <summary>
+            Represents one XML element (surrounded by tags).
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLElement.Content">
+            <summary>
+            Represents all contents of the <see cref="T:DataEncoding.XML.XMLElement"/>.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLElement.FromEncoded(System.String,System.Int32,System.Int32@)">
+            <summary>
+            Creates a new instance of <see cref="T:DataEncoding.XML.XMLElement"/> and sets it's values based on the decoded data.
+            </summary>
+            <param name="xml">The data to decode.</param>
+            <param name="start">The index at which to start decoding.</param>
+            <param name="end">The index at which the decoding stopped (the index of the first character after the decoded value).</param>
+            <returns>The new instance of <see cref="T:DataEncoding.XML.XMLElement"/> based on values from the decoded data.</returns>
+        </member>
+        <member name="T:DataEncoding.XML.XMLString">
+            <summary>
+            Represents a string of characters in XML.<br />
+            Mainly useful for escaping and unescaping of characters.
+            </summary>
+        </member>
+        <member name="P:DataEncoding.XML.XMLString.Content">
+            <summary>
+            The string which the <see cref="T:DataEncoding.XML.XMLString"/> represents.
+            </summary>
+        </member>
+        <member name="M:DataEncoding.XML.XMLString.Encode(System.String)">
+            <summary>
+            Encodes the given text to allow it's use in XML document.
+            </summary>
+            <param name="input">The text to encode.</param>
+            <returns>The encoded text.</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLString.Decode(System.String)">
+            <summary>
+            Decodes the given text, performing operations like removing comments and resolving escape sequences back to their original characters.
+            </summary>
+            <param name="input">The text to decode.</param>
+            <returns>The decoded text</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLString.FromEncoded(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:DataEncoding.XML.XMLString"/> based on the text decoded from the given XML string.
+            </summary>
+            <param name="xml">The string to decode.</param>
+            <returns>A new instance of <see cref="T:DataEncoding.XML.XMLString"/> containing the decoded text from the xml argument.</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLString.Escape(System.String)">
+            <summary>
+            Escapes all characters that need to be escaped in the given input.
+            </summary>
+            <param name="input">The string to escape.</param>
+            <returns>A string in which all characters that need to be escaped are properly escaped.</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLString.Unescape(System.String)">
+            <summary>
+            Resolves all escaped characters in the given text back to their original characters.
+            </summary>
+            <param name="input">The text to unescape.</param>
+            <returns>A text in which all escape sequences are resolved to their original characters.</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLString.EscapeUnicode(System.Char)">
+            <summary>
+            Creates a Unicode escape sequence for the given character.
+            </summary>
+            <param name="character">The character to escape.</param>
+            <returns>XML hexadecimal escape sequence of the given character.</returns>
+        </member>
+        <member name="M:DataEncoding.XML.XMLString.UnescapeUnicode(System.String,System.Int32,System.Int32@)">
+            <summary>
+            Resolves an Unicode escape sequence back to it's original character.
+            </summary>
+            <param name="input">The text that contains the Unicode escape sequence.</param>
+            <param name="start">The index at which the escape sequence starts.</param>
+            <param name="length">The length, in characters, of the escape sequence, that was resolved.</param>
+            <returns>The original character resolved from the Unicode escape sequence.</returns>
+        </member>
     </members>
 </doc>
