@@ -1,4 +1,4 @@
-﻿using DataEncoding.JSON;
+using DataEncoding.JSON;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -62,7 +62,7 @@ namespace RSAParametersIO
         /// <param name="json">A <see cref="string"/> containing the JSON objects to decode.</param>
         /// <returns>
         /// An array of all decoded <see cref="RSAParameters"/>.<br />
-        /// The array can be <see cref="null"/> if no JSON values were found in the input.<br />
+        /// The array can be null if no JSON values were found in the input.<br />
         /// The array can also have 0 items in case JSON values were found in the input, but no JSON object containing any key parameters was found.<br />
         /// </returns>
         public static RSAParameters[] FromJSON(string json)

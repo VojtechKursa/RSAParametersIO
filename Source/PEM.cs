@@ -48,7 +48,7 @@ namespace RSAParametersIO
         /// <param name="text">A <see cref="string"/> containing the PEM structure to decode.</param>
         /// <returns>
         /// An array of all decoded <see cref="RSAParameters"/>.<br />
-        /// The array can be <see cref="null"/> if the text didn't contain any PEM block.<br />
+        /// The array can be null if the text didn't contain any PEM block.<br />
         /// The array can also have 0 items in case PEM blocks were found in the text, but no label matched the standard RSA key labels.<br />
         /// <see cref="System.ArgumentException"/> can be thrown if there is an error during decode of the PEM blocks or during decode of a DER block inside a valid and correctly labeled PEM block.
         /// </returns>
