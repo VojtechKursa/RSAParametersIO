@@ -1,31 +1,29 @@
-﻿using System.Security.Cryptography;
+﻿using DataEncoding.XML;
+using System.Security.Cryptography;
 
 namespace RSAParametersIO
 {
     public static partial class RSAParamsIO
     {
-        //Maybe make more effective when DataEncoding.XML is available?
-
+        /// <summary>
+        /// Encodes the key of the given <see cref="RSA"/> instance into XML format element, using .NET standard tags.
+        /// </summary>
+        /// <inheritdoc cref="ToXML_W3C(RSA, bool)"/>
         public static string ToXML_NET(RSA rsa, bool includePrivateParameters)
         {
-            return rsa.ToXmlString(includePrivateParameters);
+            return ToXML_NET(rsa.ExportParameters(includePrivateParameters), includePrivateParameters);
         }
 
+        /// <summary>
+        /// Encodes the parameters in the given <see cref="RSAParameters"/> instance as an RSA key into XML format element, using .NET standard tags.
+        /// </summary>
+        /// <inheritdoc cref="ToXML_W3C(RSAParameters, bool)"/>
         public static string ToXML_NET(RSAParameters rsa, bool includePrivateParameters)
         {
-            RSA x = RSA.Create();
-            x.ImportParameters(rsa);
+            XMLElement keyElem = MakeKeyElement(rsa, includePrivateParameters);
+            keyElem.Name = "RSAKeyValue";
 
-            return x.ToXmlString(includePrivateParameters);
-        }
-
-        public static RSA FromXML_NET(string xml)
-        {
-            RSA rsa = RSA.Create();
-
-            rsa.FromXmlString(xml);
-
-            return rsa;
+            return XMLBase.Beautify(keyElem.Encode());
         }
     }
 }
