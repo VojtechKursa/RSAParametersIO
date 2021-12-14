@@ -1,4 +1,4 @@
-using DataEncoding.JSON;
+﻿using DataEncoding.JSON;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -52,7 +52,7 @@ namespace RSAParametersIO
                     throw new ArgumentException("RSA private key requested, but the RSAParameters instance doesn't contain private parameters.");
             }
 
-            return new JSONObject(coll).Encode();
+            return JSONFunctions.Beautify(new JSONObject(coll).Encode());
         }
 
         /// <summary>
