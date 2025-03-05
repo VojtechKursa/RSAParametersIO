@@ -1,0 +1,3 @@
+[submodule "DataEncoding"]
+	path = Libraries/DataEncoding
+	url = https://github.com/VojtechKursa/DataEncoding

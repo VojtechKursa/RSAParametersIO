@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSAParametersIO", "RSAParametersIO.csproj", "{651FCAE1-BB2A-4D37-BB87-8D28817BBFDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataEncoding", "Libraries\DataEncoding\DataEncoding.csproj", "{02257DC0-3B82-0F07-E112-99AF9C7E4341}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{651FCAE1-BB2A-4D37-BB87-8D28817BBFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{651FCAE1-BB2A-4D37-BB87-8D28817BBFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{651FCAE1-BB2A-4D37-BB87-8D28817BBFDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02257DC0-3B82-0F07-E112-99AF9C7E4341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02257DC0-3B82-0F07-E112-99AF9C7E4341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02257DC0-3B82-0F07-E112-99AF9C7E4341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02257DC0-3B82-0F07-E112-99AF9C7E4341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

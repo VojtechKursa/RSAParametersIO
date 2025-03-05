@@ -9,13 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Libraries\**" />
+    <EmbeddedResource Remove="Libraries\**" />
+    <None Remove="Libraries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Libraries\DataEncoding\DataEncoding.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="GPL.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Libraries\DataEncoding\LICENSE.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Libraries\DataEncoding\README.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="LICENSE.txt">
@@ -24,16 +28,6 @@
     <None Update="README.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Libraries\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="DataEncoding">
-      <HintPath>Libraries\DataEncoding\DataEncoding.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
